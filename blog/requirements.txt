@@ -1,0 +1,8 @@
+python
+pip install django
+pip install six
+pip install pillow
+
+If you are importing this project, get your SECRET_KEY from your django project as mine is left blank
+
+

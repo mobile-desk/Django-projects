@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+
+            
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong> Message: </strong> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        <header id="navbar">    
+            {% if user.is_authenticated %}
+            
+                <h1 id="logo"> BLOG </h1>
+                <ul id="main-navv">
+                    <li><button type="submit"> <a href="{% url 'signout' %}">SignOut</a></button></li>
+                </ul>
+            {% else %}
+                <h1 id="logo"> BLOG </h1>
+                <ul id="main-nav">
+                    <li><button type="submit"> <a href="{% url 'signup' %}">SignUp</a></button></li>
+                    <li><button type="submit"> <a href="{% url 'signin' %}">SignIn</a></button></li>
+                </ul>
+            {% endif %}
+        </header>   
+        
+        {% if user.is_authenticated %}
+            <div>
+                <ul>
+                    {% for post in object_list %}
+                        <li>
+                            <h2><a href="{% url 'article' post.pk %}" style="color:white; text-decoration: none;" >{{ post.title }}</a></h2>
+                            <h3> Post Author: {{ post.author }}</h3>
+                            {{ post.summary }}<br>
+                            {{ post.date_added }}
+                        </li>
+                        <br>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <h1 style="color: red;"> LOGIN TO VIEW ARTICLES </h1>
+        {% endif %}
+    {% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div id="det">
+        <br>
+        <h1>
+            {{ post.title }}
+        </h1>
+        <p>
+        <small>
+            By: {{ post.author.first_name }}  {{ post.author.last_name }}
+        </small></p><br/>
+        <hr>
+        <br/>
+        <p>
+            {{ post.body }}
+            <br/>
+            <br/>
+            <br/>
+            {% if post.upload %}
+                <img src="{{ post.upload.url }}" width="300px" height="300px">
+            {% endif %}
+                <br/>
+            <p>
+                {{ post.date_added }}<br>
+                POST BY:  {{ post.author.username }}
+            </p>
+        </p>
+    
+        <br/><br/>
+        <button id="button-83" role="button"> <a href="{% url 'home' %}">Back</a> </button>
+    </div>
+{% endblock %}
